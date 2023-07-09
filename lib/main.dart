@@ -80,57 +80,21 @@ class _HomeState extends State<Home> {
               } else {
                 dolar = snapshot.data!["results"]["currencies"]["USD"]["buy"];
                 euro = snapshot.data!["results"]["currencies"]["EUR"]["buy"];
-                return const SingleChildScrollView(
-                  padding: EdgeInsets.all(10.0),
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.all(10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.monetization_on,
                         size: 150.0,
                         color: Colors.amber,
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: "Reais",
-                            labelStyle: TextStyle(
-                              color: Colors.amber,
-                            ),
-                            border: OutlineInputBorder(),
-                            prefixText: "R\$"),
-                        style: TextStyle(
-                          color: Colors.amber,
-                          fontSize: 25.0,
-                        ),
-                      ),
-                      Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: "Dólares",
-                            labelStyle: TextStyle(
-                              color: Colors.amber,
-                            ),
-                            border: OutlineInputBorder(),
-                            prefixText: "US"),
-                        style: TextStyle(
-                          color: Colors.amber,
-                          fontSize: 25.0,
-                        ),
-                      ),
-                      Divider(),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: "Euros",
-                            labelStyle: TextStyle(
-                              color: Colors.amber,
-                            ),
-                            border: OutlineInputBorder(),
-                            prefixText: "€"),
-                        style: TextStyle(
-                          color: Colors.amber,
-                          fontSize: 25.0,
-                        ),
-                      ),
+                      buildTextField("Reais", "R\$"),
+                      const Divider(),
+                      buildTextField("Dólares", "US"),
+                      const Divider(),
+                      buildTextField("Euros", "€")
                     ],
                   ),
                 );
@@ -140,4 +104,20 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+}
+
+Widget buildTextField(String label, String prefix) {
+  return TextField(
+    decoration: InputDecoration(
+        labelText: label,
+        labelStyle: const TextStyle(
+          color: Colors.amber,
+        ),
+        border: const OutlineInputBorder(),
+        prefixText: prefix),
+    style: const TextStyle(
+      color: Colors.amber,
+      fontSize: 25.0,
+    ),
+  );
 }
